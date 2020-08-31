@@ -16,6 +16,5 @@ Task.prototype.isValid = function() {
 
 Task.prototype.toString = function(){
     //capitalize the first letter of the task text
-    var first = this.text.substring(0,1);
-    return first.toUpperCase() + this.text.substring(1);
+    return this.text.capitalize();
 };
