@@ -17,7 +17,7 @@ var taskList = {
         this.tasks.sort();
     },
     add: function(task) {
-        this.tasks.push(task.toString());
+        this.tasks.push(task.toString());  // calls the custom toString method of the task object
     },
     delete: function(i) {
         this.sort();
