@@ -23,7 +23,7 @@ stringArrayStoragePrototype.get = function() {
 stringArrayStoragePrototype.set = function(arr) {
     if (Array.isArray(arr)) {
         var str = arr.join("|");
-        localStoragePrototype.set.call(this, str):
+        localStoragePrototype.set.call(this, str);
     }
 };
 
