@@ -5,6 +5,7 @@ var taskList = {
     storage: getTaskStorage("tasks_11"), //storage object
     displayDiv: null, // div that displays tasks
     deleteClickHandler: null, // delete click event handler
+    editClickHandler: null,
     load: function() {
         if (this.tasks.length === 0) {
             taskList.tasks = this.storage.get();
@@ -28,6 +29,10 @@ var taskList = {
         this.tasks.splice(i, 1);
         return this;
     },
+    edit: function(i, task) {
+        this.tasks[i] = task.toString();
+        return this;
+    },
     clear: function() {
         this.tasks.length = 0;
         this.storage.clear();
@@ -42,14 +47,21 @@ var taskList = {
         for (var i in this.tasks) {
             html = html.concat("<p>");
             html = html.concat("<a href='#' title='", i, "'>Delete</a>");
+            html = html.concat("<a href='#' title='", i, "'>Edit</a>");
             html = html.concat(this.tasks[i]);
             html = html.concat("</p>");
         }
         this.displayDiv.innerHTML = html;
         //get links and add click event handlers
         var links = this.displayDiv.getElementsByTagName("a");
+
         for (var i = 0; i < links.length; i++) {
-            links[i].onclick = this.deleteClickHandler;
+            if(links[i].innerHTML === "Delete") {
+                links[i].onclick = this.deleteClickHandler;
+            } else {
+                links[i].onclick = this.editClickHandler;
+            }
+            
         }
         return this;
     }
