@@ -8,9 +8,7 @@ var addToTaskList = function() {
     var taskTextBox = $("task");
     var newTask = new Task(taskTextBox.value);
     if(newTask.isValid()) {
-        taskList.add(newTask);
-        taskList.save();
-        taskList.display();
+        taskList.add(newTask).save().display();
         taskTextBox.value = "";
     } else {
         alert("Please enter a task.");
@@ -24,9 +22,7 @@ var clearTaskList = function() {
 };
 
 var deleteFromTaskList = function() {
-    taskList.delete(this.title) // this = clicked link
-    taskList.save();
-    taskList.display();
+    taskList.delete(this.title).save().display() // this = clicked link
     $("task").focus();
 };
 
@@ -37,7 +33,6 @@ window.onload = function() {
     taskList.deleteClickHandler = deleteFromTaskList;
     taskList.displayDiv = $("tasks");
 
-    taskList.load();
-    taskList.display();
+    taskList.load().display();
     $("task").focus();
 }
