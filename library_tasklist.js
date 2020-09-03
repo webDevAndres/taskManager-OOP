@@ -9,24 +9,30 @@ var taskList = {
         if (this.tasks.length === 0) {
             taskList.tasks = this.storage.get();
         }
+        return this;
     },
     save: function() {
         this.storage.set(this.tasks);
+        return this;
     },
     sort: function() {
         this.tasks.sort();
+        return this;
     },
     add: function(task) {
-        this.tasks.push(task.toString());  // calls the custom toString method of the task object
+        this.tasks.push(task.toString());
+        return this;
     },
     delete: function(i) {
         this.sort();
         this.tasks.splice(i, 1);
+        return this;
     },
     clear: function() {
         this.tasks.length = 0;
         this.storage.clear();
         this.displayDiv.innerHTML = "";
+        return this;
     },
     display: function() {
         var html = "";
@@ -40,12 +46,11 @@ var taskList = {
             html = html.concat("</p>");
         }
         this.displayDiv.innerHTML = html;
-
         //get links and add click event handlers
         var links = this.displayDiv.getElementsByTagName("a");
         for (var i = 0; i < links.length; i++) {
             links[i].onclick = this.deleteClickHandler;
         }
+        return this;
     }
-
 };
