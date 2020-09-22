@@ -18,7 +18,7 @@ var stringArrayStoragePrototype = Object.create(localStoragePrototype);
 stringArrayStoragePrototype.get = function() {
     var str = localStoragePrototype.get.call(this) || "";
     return (str === "") ? [] : str.split("|");
-}
+};
 
 stringArrayStoragePrototype.set = function(arr) {
     if (Array.isArray(arr)) {
@@ -31,5 +31,5 @@ stringArrayStoragePrototype.set = function(arr) {
 var getTaskStorage = function(key) {
     var storage = Object.create(stringArrayStoragePrototype);
     storage.key = key;
-    return storage;
+    return storage; // return storage object with key property
 };
